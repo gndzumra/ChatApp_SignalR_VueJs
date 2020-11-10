@@ -33,7 +33,6 @@ export default {
   },
 
   created() {
-    // Connect to our hub
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl("https://127.0.0.1:5001/chat/")
       .configureLogging((logging) => {
@@ -41,9 +40,17 @@ export default {
         logging.SetMinimumLevel(LogLevel.Debug);
       }).build();
 
-    this.connection.start()
+    this.connection
+      .start()
       .then(() => console.log("Connection Started"))
       .catch((err) => console.log("connecting hub failed err is : ", err));
+  },
+
+  mounted() {
+    this.connection.on("ReceiveMessage", (user, data) => {
+      let insertData = { name: user, message: data };
+      this.listMessage.push(insertData);
+    });
   },
 };
 </script>

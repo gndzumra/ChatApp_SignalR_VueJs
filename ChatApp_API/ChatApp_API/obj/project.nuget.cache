@@ -1,27 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zLkRU+shrTzNV+p+GgSh8nLKZimObr0qsuSNTTaeryDqmQ8C4h3oQ4Kt/a3wg/btwt/ZbW3aCWLEj9MXUmGuiQ==",
+  "dgSpecHash": "m6qMbCCiY7T88UeoPuczAdXwgbpIazsaGBw4FqCRJlBKwECt2QXXALIoyiOxCicL1flCK3hWkU1KFFj8w79oxg==",
   "success": true,
   "projectFilePath": "C:\\repos\\SignalR_VueJs\\ChatApp_SignalR_VueJs\\ChatApp_API\\ChatApp_API\\ChatApp_API.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\5.0.0\\microsoft.aspnetcore.connections.abstractions.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.aspnetcore.http.connections.client\\5.0.0\\microsoft.aspnetcore.http.connections.client.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.aspnetcore.http.connections.common\\5.0.0\\microsoft.aspnetcore.http.connections.common.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.0\\microsoft.aspnetcore.http.features.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.aspnetcore.signalr.client\\5.0.0\\microsoft.aspnetcore.signalr.client.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.aspnetcore.signalr.client.core\\5.0.0\\microsoft.aspnetcore.signalr.client.core.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.aspnetcore.signalr.common\\5.0.0\\microsoft.aspnetcore.signalr.common.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.aspnetcore.signalr.protocols.json\\5.0.0\\microsoft.aspnetcore.signalr.protocols.json.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.0\\microsoft.extensions.dependencyinjection.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.extensions.logging\\5.0.0\\microsoft.extensions.logging.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\system.io.pipelines\\5.0.0\\system.io.pipelines.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\system.text.json\\5.0.0\\system.text.json.5.0.0.nupkg.sha512",
-    "C:\\Users\\ait_s\\.nuget\\packages\\system.threading.channels\\5.0.0\\system.threading.channels.5.0.0.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

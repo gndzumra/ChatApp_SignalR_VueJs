@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace ChatApp_API
+namespace ChatApp_API.Srv
 {
     public class ChatHub : Hub
     {

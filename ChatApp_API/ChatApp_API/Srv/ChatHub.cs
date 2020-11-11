@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace ChatApp_API.Srv
 {
-    public class ChatHub : Hub
+      public class ChatHub : Hub<IChatHub>
     {
         public override Task OnConnectedAsync()
         {
@@ -20,8 +20,8 @@ namespace ChatApp_API.Srv
 
         public async Task SendMessage(string user, string message)
         {
+            await Clients.All.ReceiveMessage(user, message);
             Console.WriteLine("Message received");
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
     }
 }

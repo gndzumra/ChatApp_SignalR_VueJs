@@ -37,7 +37,8 @@ namespace ChatApp_API
             app.UseAuthorization();
             app.UseCors(s =>
             {
-                s.AllowAnyHeader()
+                s.WithOrigins("http://localhost:8080", "*")
+                .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials();
             });

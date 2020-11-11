@@ -34,7 +34,7 @@ export default {
   },
 
   created() {
-   window.atob('dGhpc2lzdW5zYWZl');
+    window.atob('dGhpc2lzdW5zYWZl');
     console.log(window.atob('dGhpc2lzdW5zYWZl'));
     // Connect to our hub
     this.connection = new signalR.HubConnectionBuilder()

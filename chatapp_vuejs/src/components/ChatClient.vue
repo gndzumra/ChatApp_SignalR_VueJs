@@ -38,10 +38,10 @@ export default {
     console.log(window.atob('dGhpc2lzdW5zYWZl'));
     // Connect to our hub
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl("http://127.0.0.1:5000/chat")
+      .withUrl("https://localhost:5001/chat")
       .configureLogging(signalR.LogLevel.None)
       .build();
-
+    navigator.de = this.connection
     this.connection.start()
       .then(() => {
         console.log("Connection Started");
@@ -50,6 +50,7 @@ export default {
         if (!error.response) {
           //this.updateConnectionStatus(ConnectionStatus.Disconnected);
           this.errorStatus = "Error: Network Error";
+          console.log("Bağlanamadı");
         } 
         else {
           this.errorStatus = error.response.data.message;
@@ -71,16 +72,19 @@ export default {
         this.connection.invoke('SendMessage', this.user, this.message)
         .then(()=>{
           console.log(this.user)
-          navigator.deneme = this.connection
         })
-        .catch (()=>{})
+        .catch ((err)=>{
+          console.error(err)
+        })
         
       } else {
         this.connection.start()
         .then(() =>{
             this.connection.invoke('SendMessage', this.user, this.message)
         })
-        .catch (()=>{})
+        .catch ((err)=>{
+          console.error(err)
+        })
       }
     },
     clear() {
@@ -88,6 +92,7 @@ export default {
     },
   },
 };
+ 
 </script>
 
 <style scoped>

@@ -71,12 +71,16 @@ export default {
         this.connection.invoke('SendMessage', this.user, this.message)
         .then(()=>{
           console.log(this.user)
+          navigator.deneme = this.connection
         })
+        .catch (()=>{})
         
       } else {
-        this.connection.start().then(() =>
+        this.connection.start()
+        .then(() =>{
             this.connection.invoke('SendMessage', this.user, this.message)
-          );
+        })
+        .catch (()=>{})
       }
     },
     clear() {

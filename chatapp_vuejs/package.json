@@ -10,6 +10,7 @@
   "dependencies": {
     "@aspnet/signalr": "^1.1.4",
     "@mdi/font": "^5.5.55",
+    "@vue/devtools": "^5.3.3",
     "axios": "^0.20.0",
     "ckeditor4-vue": "^0.2.0",
     "core-js": "^3.6.5",

@@ -37,15 +37,17 @@ namespace ChatApp_API
             app.UseAuthorization();
             app.UseCors(s =>
             {
-                s.AllowAnyOrigin()
-                 .AllowAnyHeader()
-                 .AllowAnyMethod();
+                s.AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials();
             });
+
+            app.UseSignalR(routes => { routes.MapHub<ChatHub>("/chatHub"); });
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<ChatHub>("/chat");
+               // endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }

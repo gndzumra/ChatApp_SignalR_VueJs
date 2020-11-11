@@ -37,3 +37,4 @@ C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\obj\x64\Deb
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\obj\x64\Debug\netcoreapp3.1\ChatApp_API.dll
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\obj\x64\Debug\netcoreapp3.1\ChatApp_API.pdb
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\obj\x64\Debug\netcoreapp3.1\ChatApp_API.genruntimeconfig.cache
+C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\obj\x64\Debug\netcoreapp3.1\ChatApp_API.csprojAssemblyReference.cache

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home">
     <div class="table">
       <div class="row">
         <label>User </label>
@@ -9,8 +9,8 @@
         <label>Message</label>
         <input v-model="message" placeholder="message" id="messageInput" />
       </div>
-      <button large class="btn">Gönder</button>
-      <button large class="btn second-btn">Clear</button>
+      <button large class="btn" @click="send"> Gönder </button>
+      <button large class="btn second-btn" @click="clear"> Clear </button>
     </div>
     <div v-for="(item, list) in listMessage" :key="list">
       <p>{{ item.name }} : {{ item.message }}</p>
@@ -20,6 +20,7 @@
 
 <script>
 /* eslint-disable */
+//import { Vue } form 'vue-property-decorator'
 import * as signalR from "@aspnet/signalr";
 
 export default {
@@ -33,23 +34,30 @@ export default {
   },
 
   created() {
+   window.atob('dGhpc2lzdW5zYWZl');
+    console.log(window.atob('dGhpc2lzdW5zYWZl'));
     // Connect to our hub
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl("https://127.0.0.1:5001/chat/")
-      .configureLogging((logging) => {
-        logging.AddConsole();
-        logging.SetMinimumLevel(LogLevel.Debug);
-      }).build();
+      .withUrl("http://127.0.0.1:5000/chat")
+      .configureLogging(signalR.LogLevel.None)
+      .build();
 
     this.connection.start()
-      .then(() => console.log("Connection Started"))
-      .catch((err) => console.log("connecting hub failed err is : ", err));
+      .then(() => {
+        console.log("Connection Started");
+      })
+      .catch((error) => {
+        if (!error.response) {
+          //this.updateConnectionStatus(ConnectionStatus.Disconnected);
+          this.errorStatus = "Error: Network Error";
+        } 
+        else {
+          this.errorStatus = error.response.data.message;
+        }
+      });
   },
 
-  //mounted: DOM'a eklendiği anda çalışacak
   mounted() {
-    // this.connection.start();
-
     navigator.con = this.connection;
     this.connection.on("ReceiveMessage", (user, data) => {
       let insertData = { name: user, message: data };
@@ -58,20 +66,22 @@ export default {
   },
 
   methods: {
-    /*
     send() {
-      document.getElementById("messageInput").disabled = true;
-
       if (this.connection.state === signalR.HubConnectionState.Connected) {
-        this.connection.invoke("SendMessage", this.user, this.message);
+        this.connection.invoke('SendMessage', this.user, this.message)
+        .then(()=>{
+          console.log(this.user)
+        })
+        
       } else {
-        this.connection.start().then(() => this.connection.invoke("SendMessage", this.user, this.message));
+        this.connection.start().then(() =>
+            this.connection.invoke('SendMessage', this.user, this.message)
+          );
       }
     },
     clear() {
       this.listMessage = [];
-    }, 
-    */
+    },
   },
 };
 </script>
@@ -81,7 +91,6 @@ export default {
   min-width: 30%;
   max-width: 40%;
   height: 50%;
-  border: 2px solid black;
   align-self: center;
   padding: 3%;
 }

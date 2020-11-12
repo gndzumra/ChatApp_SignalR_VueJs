@@ -56,8 +56,7 @@ export default {
       .configureLogging(signalR.LogLevel.None)
       .build();
 
-    this.connection
-      .start()
+    this.connection.start()
       .then(() => {
         console.log("Connection Started");
       })
@@ -90,8 +89,7 @@ export default {
             console.error(err);
           });
       } else {
-        this.connection
-          .start()
+        this.connection.start()
           .then(() => {
             this.connection.invoke("SendMessage", this.user, this.message);
           })
@@ -108,20 +106,6 @@ export default {
 </script>
 
 <style scoped>
-.table {
-  border-style: inherit;
-  border-radius: unset;
-  border-color: lightseagreen;
-}
-.row {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  justify-items: center;
-}
-.second {
-  margin-top: 4%;
-}
 .btn {
   margin-top: 5%;
   cursor: pointer;
@@ -129,8 +113,5 @@ export default {
 }
 .second-btn {
   margin-left: 1%;
-}
-.row label {
-  flex: 1;
 }
 </style>

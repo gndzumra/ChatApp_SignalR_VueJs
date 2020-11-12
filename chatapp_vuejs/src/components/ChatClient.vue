@@ -49,21 +49,18 @@ export default {
 
   created() {
     window.atob("dGhpc2lzdW5zYWZl");
-    console.log(window.atob("dGhpc2lzdW5zYWZl"));
+    console.log(window.atob("dGhpc2lzdW5zYWZl")); 
     // Connect to our hub
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl("'https://localhost:5001/chat")
+      .withUrl("https://localhost:5001/chat")
       .configureLogging(signalR.LogLevel.None)
       .build();
 
     this.connection.start()
-      .then(() => {
-        console.log("Connection Started");
-      })
+      .then(() => {})
       .catch((error) => {
         if (!error.response) {
           this.errorStatus = "Error: Network Error";
-          console.log("Not Connection");
         } else {
           this.errorStatus = error.response.data.message;
         }
@@ -86,7 +83,7 @@ export default {
             console.log(this.user);
           })
           .catch((err) => {
-            console.error(err);
+            console.error(err)
           });
       } else {
         this.connection.start()
@@ -94,7 +91,7 @@ export default {
             this.connection.invoke("SendMessage", this.user, this.message);
           })
           .catch((err) => {
-            console.error(err);
+            console.error(err)
           });
       }
     },

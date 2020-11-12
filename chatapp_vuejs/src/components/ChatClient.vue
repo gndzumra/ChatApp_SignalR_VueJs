@@ -1,24 +1,40 @@
 <template>
-  <div class="home">
-    <div class="table">
-      <div class="row">
-        <label>User </label>
+  <v-container>
+    <v-row>
+      <v-col cols="5" md="2">
+        <strong>Name Surname </strong>
+      </v-col>
+      <v-col cols="5" md="3" style="text-align: -webkit-left">
         <input v-model="user" placeholder="user" />
-      </div>
-      <div class="row second">
-        <label>Message</label>
-        <input v-model="message" placeholder="message" id="messageInput" />
-      </div>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" md="2">
+        <strong>Message </strong>
+      </v-col>
+      <v-col cols="12" md="3" style="text-align: -webkit-left">
+        <textarea
+          class="field"
+          outlined
+          counter="120"
+          v-model="message"
+          placeholder="message"
+          id="messageInput"
+        ></textarea>
+      </v-col>
+    </v-row>
+    <div style="margin-top: -80px">
       <button large class="btn" @click="send">Gönder</button>
       <button large class="btn second-btn" @click="clear">Clear</button>
     </div>
     <div v-for="(item, list) in listMessage" :key="list">
       <p>{{ item.name }} : {{ item.message }}</p>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
+/*eslint-disable*/
 import * as signalR from "@aspnet/signalr";
 
 export default {
@@ -32,24 +48,23 @@ export default {
   },
 
   created() {
-   /*  window.atob("dGhpc2lzdW5zYWZl");
-    console.log(window.atob('dGhpc2lzdW5zYWZl')); */
+    window.atob("dGhpc2lzdW5zYWZl");
+    console.log(window.atob("dGhpc2lzdW5zYWZl"));
     // Connect to our hub
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl("http://192.168.2.3:5000/chat")
+      .withUrl("'https://localhost:5001/chat")
       .configureLogging(signalR.LogLevel.None)
       .build();
-    navigator.de = this.connection;
+
     this.connection
       .start()
       .then(() => {
-        //console.log("Connection Started");
+        console.log("Connection Started");
       })
       .catch((error) => {
         if (!error.response) {
-          //this.updateConnectionStatus(ConnectionStatus.Disconnected);
           this.errorStatus = "Error: Network Error";
-          //console.log("Bağlanamadı");
+          console.log("Not Connection");
         } else {
           this.errorStatus = error.response.data.message;
         }
@@ -57,8 +72,7 @@ export default {
   },
 
   mounted() {
-    navigator.con = this.connection;
-    this.connection.on("aa", (user, data) => {
+    this.connection.on("ReceiveMessage", (user, data) => {
       let insertData = { name: user, message: data };
       this.listMessage.push(insertData);
     });
@@ -69,15 +83,20 @@ export default {
       if (this.connection.state === signalR.HubConnectionState.Connected) {
         this.connection
           .invoke("SendMessage", this.user, this.message)
-          .then(() =>{/* console.log(this.user) */ } )
-          .catch(() => { /* console.error(err) */ });
+          .then(() => {
+            console.log(this.user);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       } else {
-        this.connection.start()
+        this.connection
+          .start()
           .then(() => {
             this.connection.invoke("SendMessage", this.user, this.message);
           })
-          .catch(() => {
-            // console.error(err)
+          .catch((err) => {
+            console.error(err);
           });
       }
     },
@@ -90,11 +109,9 @@ export default {
 
 <style scoped>
 .table {
-  min-width: 30%;
-  max-width: 40%;
-  height: 50%;
-  align-self: center;
-  padding: 3%;
+  border-style: inherit;
+  border-radius: unset;
+  border-color: lightseagreen;
 }
 .row {
   display: flex;
@@ -111,7 +128,7 @@ export default {
   margin-top: 10%;
 }
 .second-btn {
-  margin-left: 5%;
+  margin-left: 1%;
 }
 .row label {
   flex: 1;

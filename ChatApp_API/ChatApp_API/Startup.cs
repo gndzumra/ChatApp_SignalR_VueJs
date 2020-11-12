@@ -37,18 +37,18 @@ namespace ChatApp_API
             app.UseAuthorization();
             app.UseCors(s =>
             {
-                s.WithOrigins("http://localhost:8080", "*")
+                s.WithOrigins("http://192.168.2.3:8080", "*")
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials();
             });
 
-            app.UseSignalR(routes => { routes.MapHub<ChatHub>("/chatHub"); });
+           // app.UseSignalR(routes => { routes.MapHub<ChatHub>("/chatHub"); });
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-               // endpoints.MapHub<ChatHub>("/chat");
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }

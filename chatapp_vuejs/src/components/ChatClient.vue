@@ -1,26 +1,13 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="5" md="2">
-        <strong>Name Surname </strong>
-      </v-col>
-      <v-col cols="5" md="3" style="text-align: -webkit-left">
-        <input v-model="user" placeholder="user" />
+      <v-col cols="12" md="6" style="text-align: -webkit-left">
+        <input v-model="user" placeholder="Name Surname" class="messages" />
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" md="2">
-        <strong>Message </strong>
-      </v-col>
-      <v-col cols="12" md="3" style="text-align: -webkit-left">
-        <textarea
-          class="field"
-          outlined
-          counter="120"
-          v-model="message"
-          placeholder="message"
-          id="messageInput"
-        ></textarea>
+      <v-col cols="12" md="6" style="text-align: -webkit-left">
+        <input type="text" v-model="message" placeholder="message" class="messages" />
       </v-col>
     </v-row>
     <div style="margin-top: -80px">
@@ -49,14 +36,16 @@ export default {
 
   created() {
     window.atob("dGhpc2lzdW5zYWZl");
-    console.log(window.atob("dGhpc2lzdW5zYWZl")); 
+    console.log(window.atob("dGhpc2lzdW5zYWZl"));
+
     // Connect to our hub
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl("https://localhost:5001/chat")
       .configureLogging(signalR.LogLevel.None)
       .build();
 
-    this.connection.start()
+    this.connection
+      .start()
       .then(() => {})
       .catch((error) => {
         if (!error.response) {
@@ -83,15 +72,16 @@ export default {
             console.log(this.user);
           })
           .catch((err) => {
-            console.error(err)
+            console.error(err);
           });
       } else {
-        this.connection.start()
+        this.connection
+          .start()
           .then(() => {
             this.connection.invoke("SendMessage", this.user, this.message);
           })
           .catch((err) => {
-            console.error(err)
+            console.error(err);
           });
       }
     },
@@ -104,11 +94,24 @@ export default {
 
 <style scoped>
 .btn {
-  margin-top: 5%;
+  margin-top: 3%;
+  margin-left: -5%;
   cursor: pointer;
-  margin-top: 10%;
+  margin-top: 6%;
+  font: caption;
 }
 .second-btn {
   margin-left: 1%;
+  font: caption;
+}
+.messages {
+  height: 50px;
+  width: -webkit-fill-available;
+  border-radius: 20px;
+  margin-left: 30%;
+}
+input:focus,
+button:focus {
+  outline: none;
 }
 </style>

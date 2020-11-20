@@ -20,7 +20,6 @@ C:\repos\SignalR_VueJs\ChatApp_API\ChatApp_API\obj\x64\Debug\netcoreapp3.1\ChatA
 C:\repos\SignalR_VueJs\ChatApp_API\ChatApp_API\obj\x64\Debug\netcoreapp3.1\ChatApp_API.genruntimeconfig.cache
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\appsettings.Development.json
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\appsettings.json
-C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\ChatApp_API.exe
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\ChatApp_API.deps.json
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\ChatApp_API.runtimeconfig.json
@@ -38,3 +37,4 @@ C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\obj\x64\Deb
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\obj\x64\Debug\netcoreapp3.1\ChatApp_API.pdb
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\obj\x64\Debug\netcoreapp3.1\ChatApp_API.genruntimeconfig.cache
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\obj\x64\Debug\netcoreapp3.1\ChatApp_API.csprojAssemblyReference.cache
+C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\obj\x64\Debug\netcoreapp3.1\scopedcss\bundle\ChatApp_API.styles.css

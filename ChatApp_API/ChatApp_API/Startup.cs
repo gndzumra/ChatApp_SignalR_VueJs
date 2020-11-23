@@ -1,4 +1,3 @@
-using ChatApp_API.Database;
 using ChatApp_API.Srv;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,13 +21,7 @@ namespace ChatApp_API
             services.AddControllers();
             services.AddCors();
             services.AddSignalR();
-
-            #region Scoped 
-            services.AddDbContext<MainContext>();
-            services.AddTransient<ChatHub, IChatHub>();
-            #endregion
         }
-
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

@@ -1,18 +1,18 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" md="6" style="text-align: -webkit-left">
-        <input v-model="user" placeholder="Name Surname" class="messages" />
+      <v-col cols="5" md="5" style="text-align: -webkit-left">
+        <input v-model="form.email" placeholder="Name Surname" class="messages" />
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" md="6" style="text-align: -webkit-left">
-        <input type="text" v-model="message" placeholder="message" class="messages" />
+      <v-col cols="5" md="5" style="text-align: -webkit-left">
+        <input type="text" v-model="form.password" placeholder="message" class="messages" />
       </v-col>
     </v-row>
-    <div style="margin-top: -80px">
+    <div style="margin-top: 10px">
       <button large class="btn" @click="send">Gönder</button>
-      <button large class="btn second-btn" @click="clear">Clear</button>
+      <button large class="btn second-btn" @click="authorize">Authorize</button>
     </div>
     <div v-for="(item, list) in listMessage" :key="list">
       <p>{{ item.name }} : {{ item.message }}</p>
@@ -23,12 +23,17 @@
 <script>
 /*eslint-disable*/
 import * as signalR from "@aspnet/signalr";
+import axios from "axios";
 
 export default {
   data() {
     return {
+      form: {
+        email: "",
+        password: "",
+      },
       user: "",
-      message: "",
+      message: "SELAMLAR",
       listMessage: [],
       connection: "",
     };
@@ -40,25 +45,26 @@ export default {
 
     // Connect to our hub
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl("https://localhost:5001/chat")
-      .configureLogging(signalR.LogLevel.None)
+      .withUrl("http://localhost:5000/live-hub", {
+        accessTokenFactory: () => {
+          return window.localStorage.getItem("token");
+        },
+        transport: signalR.HttpTransportType.WebSockets,
+      })
+      .configureLogging(signalR.LogLevel.Information)
       .build();
 
     this.connection
       .start()
-      .then(() => {})
+      .then((aa) => {alert("then")})
       .catch((error) => {
-        if (!error.response) {
-          this.errorStatus = "Error: Network Error";
-        } else {
-          this.errorStatus = error.response.data.message;
-        }
+        console.log(error);
       });
   },
 
   mounted() {
-    this.connection.on("ReceiveMessage", (user, data) => {
-      let insertData = { name: user, message: data };
+    this.connection.on("LiveChatMessageReceived", (username, data) => {
+      let insertData = { username: username, message: data };
       this.listMessage.push(insertData);
     });
   },
@@ -67,26 +73,23 @@ export default {
     send() {
       if (this.connection.state === signalR.HubConnectionState.Connected) {
         this.connection
-          .invoke("SendMessage", this.user, this.message)
-          .then(() => {
-            console.log(this.user);
-          })
-          .catch((err) => {
-            console.error(err);
-          });
+          .invoke("SendLiveChatMessage", this.message)
+          .then(() => {})
+          .catch((err) => {console.log(err)});
       } else {
         this.connection
           .start()
           .then(() => {
-            this.connection.invoke("SendMessage", this.user, this.message);
+            this.connection.invoke("SendLiveChatMessage", this.message);
           })
-          .catch((err) => {
-            console.error(err);
-          });
+          .catch((err) => {console.log(err)});
       }
     },
-    clear() {
-      this.listMessage = [];
+
+    authorize() {
+      return axios.post("http://localhost:5000/account/token", { email: this.form.email, password: this.form.password }).then((res) => {
+        localStorage.setItem("token", res.data.token);
+      });
     },
   },
 };

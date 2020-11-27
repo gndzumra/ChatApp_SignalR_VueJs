@@ -1,14 +1,23 @@
 using ChatApp_API.Srv;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ChatApp_API
 {
     public class Startup
     {
+        public const string JWTAuthScheme = "JWTAuthScheme";
+        public static readonly SymmetricSecurityKey SecurityKey = new SymmetricSecurityKey(Encoding.Default.GetBytes("this would be a real secret"));
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -18,31 +27,63 @@ namespace ChatApp_API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
             services.AddCors();
+
             services.AddSignalR();
+
+            services.AddAuthentication(JWTAuthScheme)
+                .AddJwtBearer(JWTAuthScheme, options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        LifetimeValidator = (before, expires, token, param) =>
+                        {
+                            return expires > DateTime.UtcNow;
+                        },
+                        ValidateAudience = false,
+                        ValidateIssuer = false,
+                        ValidateActor = false,
+                        ValidateLifetime = true,
+                        IssuerSigningKey = SecurityKey,
+                    };
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = ctx =>
+                        {
+                            if (ctx.Request.Query.ContainsKey("access_token"))
+                            {
+                                ctx.Token = ctx.Request.Query["access_token"];
+                            }
+                            return Task.CompletedTask;
+                        }
+                    };
+                });
+
+            services.AddSingleton<IUserIdProvider, NameUserIdProvider>();
+
+            services.AddControllers();
+            services.AddAuthorization();
         }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            { app.UseDeveloperExceptionPage(); }
+            else
+            { app.UseHsts(); }
 
-            app.UseHttpsRedirection();
+            app.UseCors(builder =>
+                builder
+                    .WithOrigins("http://localhost:8080", "*")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+            );
 
+            app.UseStaticFiles();
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCors(s =>
-            {
-                s.WithOrigins("http://localhost:8080", "*")
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowCredentials();
-            });
-
-            // app.UseSignalR(routes => { routes.MapHub<ChatHub>("/chatHub"); });
 
             app.UseEndpoints(endpoints =>
             {

@@ -56,3 +56,11 @@ C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Deb
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\obj\x64\Debug\netcoreapp3.1\ChatApp_API.csproj.CopyComplete
+C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\repos\SignalR_VueJs\ChatApp_SignalR_VueJs\ChatApp_API\ChatApp_API\bin\x64\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
